@@ -84,4 +84,19 @@ public class Vehicle {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Vehicle{");
+        sb.append("vin=").append(vin);
+        sb.append(", year=").append(year);
+        sb.append(", make='").append(make).append('\'');
+        sb.append(", model='").append(model).append('\'');
+        sb.append(", vehicleType='").append(vehicleType).append('\'');
+        sb.append(", color='").append(color).append('\'');
+        sb.append(", odometer=").append(odometer);
+        sb.append(", price=").append(price);
+        sb.append('}');
+        return sb.toString();
+    }
 }
