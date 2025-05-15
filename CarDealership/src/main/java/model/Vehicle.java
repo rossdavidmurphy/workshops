@@ -1,4 +1,4 @@
-package com.pluralsight;
+package model;
 
 public class Vehicle {
     private  int vin;
