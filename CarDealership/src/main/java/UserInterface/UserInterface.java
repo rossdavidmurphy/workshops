@@ -41,7 +41,7 @@ public class UserInterface {
                 double min = input.nextDouble();
                 System.out.println("Enter maximum price: ");
                 double max = input.nextDouble();
-               vehicles = dealership.getVehiclesByPrice(min, max);
+                vehicles = dealership.getVehiclesByPrice(min, max);
                 break;
 
             case "2":
@@ -49,7 +49,7 @@ public class UserInterface {
                 String make = input.nextLine();
                 System.out.println("Enter Vehicle Model: ");
                 String model = input.nextLine();
-                dealership.getVehiclesByMakeModel(make, model);
+                vehicles = dealership.getVehiclesByMakeModel(make, model);
                 break;
 
             case "3":
@@ -57,13 +57,13 @@ public class UserInterface {
                 int minYear = input.nextInt();
                 System.out.println("Enter maximum year: ");
                 int maxYear = input.nextInt();
-                dealership.getVehiclesByYear(minYear, maxYear);
+                vehicles = dealership.getVehiclesByYear(minYear, maxYear);
                 break;
 
             case "4":
                 System.out.println("Enter vehicle color: ");
                 String vehicleColor = input.nextLine();
-                dealership.getVehiclesByColor(vehicleColor);
+                vehicles = dealership.getVehiclesByColor(vehicleColor);
                 break;
 
             case "5":
@@ -71,17 +71,17 @@ public class UserInterface {
                 int minMileage = input.nextInt();
                 System.out.println("Enter maximum mileage: ");
                 int maxMileage = input.nextInt();
-                dealership.getVehiclesByMileage(minMileage, maxMileage);
+                vehicles = dealership.getVehiclesByMileage(minMileage, maxMileage);
                 break;
 
             case "6":
                 System.out.println("Enter vehicle type: ");
                 String vehicleType = input.nextLine();
-                dealership.getVehicleByType(vehicleType);
+                vehicles = dealership.getVehicleByType(vehicleType);
                 break;
 
             case "7":
-                dealership.getAllVehicles();
+                vehicles = dealership.getAllVehicles();
                 break;
 
             case "8":
