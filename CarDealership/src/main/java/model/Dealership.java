@@ -114,10 +114,10 @@ public class Dealership {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Dealership{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", address='").append(address).append('\'');
-        sb.append(", phoneNumber='").append(phoneNumber).append('\'');
-        sb.append(", inventory=").append(inventory);
+        sb.append("Name = ").append(name).append('\'');
+        sb.append(", Address = ").append(address).append('\'');
+        sb.append(", Phone Number = ").append(phoneNumber).append('\'');
+        sb.append(", Inventory = ").append(inventory);
         sb.append('}');
         return sb.toString();
     }

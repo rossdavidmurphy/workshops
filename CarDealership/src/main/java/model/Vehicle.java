@@ -85,18 +85,25 @@ public class Vehicle {
         this.price = price;
     }
 
+
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Vehicle{");
-        sb.append("vin=").append(vin);
-        sb.append(", year=").append(year);
-        sb.append(", make='").append(make).append('\'');
-        sb.append(", model='").append(model).append('\'');
-        sb.append(", vehicleType='").append(vehicleType).append('\'');
-        sb.append(", color='").append(color).append('\'');
-        sb.append(", odometer=").append(odometer);
-        sb.append(", price=").append(price);
-        sb.append('}');
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("+-----------------+-----------------------+\n");
+        sb.append("| %-15s | %-21s |\n".formatted(make, model));
+        sb.append("+-----------------+-----------------------+\n");
+
+        sb.append("| %-15s | %-21s |\n".formatted("VIN", vin));
+        sb.append("| %-15s | %-21d |\n".formatted("Year", year));
+        sb.append("| %-15s | %-21s |\n".formatted("Vehicle Type", vehicleType));
+        sb.append("| %-15s | %-21s |\n".formatted("Color", color));
+        sb.append("| %-15s | %-21d |\n".formatted("Odometer", odometer));
+        sb.append("| %-15s | $%,.2f |\n".formatted("Price", price));
+
+        sb.append("+-----------------+-----------------------+\n");
+
         return sb.toString();
     }
+
 }

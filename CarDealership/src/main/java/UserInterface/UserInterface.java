@@ -4,6 +4,8 @@ import data.DealershipFileManager;
 import model.Dealership;
 import model.Vehicle;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -22,14 +24,15 @@ public class UserInterface {
     public void display() {
         initialize();
         System.out.println("\n Main Menu");
-        System.out.println("Press 1 to request Price Range");
-        System.out.println("Press 2 to request Make & Model");
-        System.out.println("Press 3 to request Year");
-        System.out.println("Press 4 to request Color");
-        System.out.println("Press 5 to request Mileage");
-        System.out.println("Press 6 to request Vehicle Type");
-        System.out.println("Press 7 to request All Vehicles");
-        System.out.println("Press 8 to remove Vehicle");
+        System.out.println("Press 1 to search by Price Range");
+        System.out.println("Press 2 to search by Make & Model");
+        System.out.println("Press 3 to search by Year");
+        System.out.println("Press 4 to search by Color");
+        System.out.println("Press 5 to search by Mileage");
+        System.out.println("Press 6 to search by Vehicle Type");
+        System.out.println("Press 7 to show All Vehicles");
+        System.out.println("Press 8 to remove a Vehicle by VIN");
+        System.out.println("Press 9 to add a Vehicle");
 
         String selectMenuOption = input.nextLine();
 
@@ -85,23 +88,31 @@ public class UserInterface {
                 break;
 
             case "8":
-                System.out.println("Enter vehicle VIN number to remove: ");
-                int removeVehicleVinNumber = input.nextInt();
+                System.out.println("Enter vehicle identification number (VIN) to remove: ");
+                int removeVehicleByVinNumber = input.nextInt();
 
                 Vehicle vinToRemove = null;
                 for (Vehicle vehicle : dealership.getAllVehicles()) {
-                    if (vehicle.getVin() == removeVehicleVinNumber) {
+                    if (vehicle.getVin() == removeVehicleByVinNumber) {
                         vinToRemove = vehicle;
                         break;
                     }
                 }
                 if (vinToRemove != null) {
                     dealership.removeVehicle(vinToRemove);
-                    System.out.println("Vehicle removed." + "\nVehicle Information: " + vinToRemove);
+                    DealershipFileManager dealershipFileManager = new DealershipFileManager();
+                    dealershipFileManager.saveDealership(dealership);
+
+                    System.out.println("Vehicle removed." + "\nVehicle Information: \n" + vinToRemove);
                 }
                 else {
                     System.out.println("Vehicle not found.");
                 }
+                break;
+            case "9":
+
+                System.out.println("Enter vehicle identification number (VIN): ");
+                int
                 break;
 
             default:
@@ -110,13 +121,17 @@ public class UserInterface {
         displayVehicles(vehicles);
     }
      public void displayVehicles(ArrayList<Vehicle> vehicles) {
-         for (Vehicle vehicle : vehicles) {
-             System.out.println(vehicle);
+         if (vehicles.isEmpty()) {
+             System.out.println("No vehicles found.");
+         } else {
+             for (Vehicle vehicle : vehicles) {
+                 System.out.println(vehicle);
+             }
          }
      }
 
-    public void processAllVehiclesRequest() {
-        ArrayList<Vehicle> vehicles = dealership.getAllVehicles();
-        displayVehicles(vehicles);
-    }
+//    public void processAllVehiclesRequest() {
+//        ArrayList<Vehicle> vehicles = dealership.getAllVehicles();
+//        displayVehicles(vehicles);
+//    }
 }

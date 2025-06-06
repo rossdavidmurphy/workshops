@@ -3,9 +3,8 @@ package data;
 import model.Dealership;
 import model.Vehicle;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.List;
 
 public class DealershipFileManager {
 
@@ -49,6 +48,22 @@ public class DealershipFileManager {
     }
 
     public void saveDealership(Dealership dealership) {
-
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("data/inventory.csv"))) {
+            List<Vehicle> vehicles = dealership.getAllVehicles();
+            for (Vehicle vehicle : vehicles) {
+                String line = vehicle.getVin() + "|" +
+                        vehicle.getYear() + "|" +
+                        vehicle.getMake() + "|" +
+                        vehicle.getModel() + "|" +
+                        vehicle.getVehicleType() + "|" +
+                        vehicle.getColor() + "|" +
+                        vehicle.getOdometer() + "|" +
+                        vehicle.getPrice();
+                writer.write(line);
+                writer.newLine(); // adds line break
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving dealership: " + e.getMessage());
+        }
     }
 }
