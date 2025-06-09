@@ -1,4 +1,8 @@
-CREATE DATABASE car_dealership;
+DROP DATABASE IF EXISTS car_dealership;
+
+CREATE DATABASE IF NOT EXISTS car_dealership;
+
+USE car_dealership;
 
 CREATE TABLE dealerships (
 	dealership_id INT AUTO_INCREMENT,
@@ -32,9 +36,12 @@ CREATE TABLE inventory (
 
 CREATE TABLE sales_contracts (
 	contract_id INT AUTO_INCREMENT,
+    date_sold DATE,
     vin VARCHAR(17),
+    dealership_id INT,
+    PRIMARY KEY (contract_id),
     FOREIGN KEY (vin) REFERENCES vehicles(vin),
-    PRIMARY KEY (contract_id)
+    FOREIGN KEY (dealership_id) REFERENCES dealerships(dealership_id)
 );
 
 INSERT INTO dealerships (name, address, phone) VALUES
@@ -58,6 +65,6 @@ INSERT INTO inventory (dealership_id, vin) VALUES
 (3, '3FA6P0H70JR123460'),
 (3, 'WBA3A5C56DF123461');
 
-INSERT INTO sales_contracts (vin) VALUES
-('2T1BURHE5JC123457'),
-('1C4RJFAG0JC123459');
+INSERT INTO sales_contracts (date_sold, vin, dealership_id) VALUES
+('2025-01-01', '2T1BURHE5JC123457', 1),
+('2025-05-05', '1C4RJFAG0JC123459', 2);
